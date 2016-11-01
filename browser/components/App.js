@@ -15,7 +15,7 @@ export default ({ children }) => (
             <Tab label="Cart" />
           </Tabs>
         </AppBar>
-        <div className="content">
+        <div className="container content">
           { children }
         </div>
       </div>

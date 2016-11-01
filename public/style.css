@@ -20,6 +20,11 @@ body,html {
 }
 
 .content {
+  min-height: calc(100vh - 55px);
   top: 55px;
-  width: 100%;
+  padding-top: 2em;
+}
+
+.ratings {
+  height: 20px;
 }

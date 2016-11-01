@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
 import AllProducts from './AllProducts';
 
-export default connect()(AllProducts);
+const mapStateToProps = ({ products }) => ({ products });
+
+export default connect(mapStateToProps)(AllProducts);
