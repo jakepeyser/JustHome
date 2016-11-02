@@ -20,6 +20,7 @@ export default ({ products, category, handleChange }) => {
             dataSource={ products }
             floatingLabelText="Search"
             fullWidth={ true }
+            onChange={(event, key, value) => handleChange("searchText", value) }
           />
         </div>
         <div className="filter col-sm-3">
@@ -46,7 +47,7 @@ export default ({ products, category, handleChange }) => {
               <div className="caption">
                 <h4 className="pull-right">$24.99</h4>
                 <h4>
-                  <Link to={`/${product.id}`}>First Product</Link>
+                  <Link to={`/products/${product.id}`}>First Product</Link>
                 </h4>
               </div>
               <div className="ratings">
