@@ -10,7 +10,8 @@ const categories = [
   'Living Room'
 ]
 
-export default ({ products }) => {
+// TODO: Place actual values inside jsx component
+export default ({ products, category, handleChange }) => {
   return (
     <div id="products" className="col-xs-12">
       <div className="row">
@@ -24,12 +25,12 @@ export default ({ products }) => {
         <div className="filter col-sm-3">
           <SelectField
             floatingLabelText="Category"
-            value={0}
+            value={category}
+            onChange={(event, key, value) => handleChange("category", value) }
           >
           {
             categories.map((category, i) => {
-              console.log(category);
-              return <MenuItem value={i} primaryText={category} />
+              return <MenuItem key={i} value={i} primaryText={category} />
             })
           }
           </SelectField>
@@ -45,7 +46,7 @@ export default ({ products }) => {
               <div className="caption">
                 <h4 className="pull-right">$24.99</h4>
                 <h4>
-                  <Link to="/">First Product</Link>
+                  <Link to={`/${product.id}`}>First Product</Link>
                 </h4>
               </div>
               <div className="ratings">
