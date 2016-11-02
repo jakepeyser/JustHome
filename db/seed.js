@@ -5,8 +5,8 @@ const numberOfDB = 30;
 
 // arrays for ENUM
 const productType = ['chair', 'table', 'bed', 'closet', 'sofa', 'desk']
-const productStyle = ['Coastal', 'Contemporary', 'Traditional', 'modern', 'gothic'];
-const productMaterial = ['wood', 'plastic', 'MDF', 'Mild steel', 'Cast iron', 'Synthetic leather', 'Poly urethane', 'Leather', 'Fabric', 'Acrylic', 'Stainless steel']
+const productStyle = ['coastal', 'contemporary', 'traditional', 'modern', 'gothic', 'brutalist'];
+const productMaterial = ['wood', 'plastic', 'mdf', 'mild steel', 'cast iron', 'synthetic leather', 'polyurethane', 'leather', 'fabric', 'acrylic', 'stainless steel']
 
 // create methods generating random object
 chance.mixin({
@@ -51,6 +51,14 @@ chance.mixin({
 			state: chance.state(),
 			zip: chance.zip()
 		}
+	},
+	'reviews': () => {
+		return {
+			rating: Math.floor(Math.random() * 5) + 1,
+			comment: chance.paragraph({sentences: 1}),
+			product_id: chance.natural({min:1, max:numberOfDB}),
+			user_id: chance.natural({min:1, max:numberOfDB})
+		}
 	}
 })
 
@@ -86,7 +94,7 @@ for (let i = 0; i < numberOfDB; i++) {
 	// lineItemArr.push(chance.);
 	// orderArr.push(chance.);
 	productArr.push(chance.products());
-	// reviewArr.push(chance.);
+	reviewArr.push(chance.reviews());
 	userArr.push(chance.users());
 }
 
@@ -97,10 +105,11 @@ const seedFunc = function(dbName) {
 }
 
 // function for seeding data
-const seedUsers = seedFunc('users')
-const seedAddresses = seedFunc('addresses')
-const seedCreditcards = seedFunc('creditCards')
-const seedProducts = seedFunc('products')
+const seedUsers = seedFunc('users');
+const seedAddresses = seedFunc('addresses');
+const seedCreditcards = seedFunc('creditCards');
+const seedProducts = seedFunc('products');
+const seedReviews = seedFunc('reviews');
 
 // const seedUsers = () => db.Promise.map([
 //   {
@@ -124,6 +133,7 @@ db.didSync
 	.then(seedProducts)
 	.then(seedUsers)
 	.then(seedCreditcards)
+	.then(seedReviews)
 	.then(() => console.log(`Seeded OK`))
 	.catch(error => console.error(error))    
 	.finally(() => db.close())

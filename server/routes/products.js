@@ -14,9 +14,3 @@ const products = epilogue.resource({
     model: db.model('products'),
     endpoints: ['/products', '/products/:id']
 })
-
-customProductRoutes.post('/products', (req, res, next) => {
-    products.model.create(req.body)
-    .then(created => res.status(201).send(created))
-    .catch(next);
-})
