@@ -10,18 +10,8 @@ const customUserRoutes = require('express').Router()
 module.exports = customUserRoutes;
 
 // Epilogue will automatically create standard RESTful routes
-const users = epilogue.resource({
-  model: db.model('reviews'),
-  endpoints: ['/reviews', '/reviews/:id']
-})
+// const users = epilogue.resource({
+//   model: db.model('reviews'),
+//   endpoints: ['/reviews', '/reviews/:id']
+// })
 
-customUserRoutes.get('/', (req, res) => {
-	res.send(reviews.model)
-})
-
-
-// const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
-// users.delete.auth(mustBeLoggedIn)
-// users.delete.auth(selfOnly)
-// users.list.auth(forbidden)
-// users.read.auth(mustBeLoggedIn)
