@@ -2,29 +2,29 @@ const db = require('APP/db');
 const Chance = require('chance');
 const chance = new Chance(Math.random);
 
-
+// arrays for ENUM
 const productType = ['chair', 'table', 'bed', 'closet', 'sofa', 'desk']
 const productStyle = ['Coastal', 'Contemporary', 'Traditional', 'modern', 'gothic'];
 const productMaterial = ['wood', 'plastic', 'MDF', 'Mild steel', 'Cast iron', 'Synthetic leather', 'Poly urethane', 'Leather', 'Fabric', 'Acrylic', 'Stainless steel']
 
-
+// create methods generating random object
 chance.mixin({
-	'user': () => {
+	'users': () => {
 		return {
 			first_name: chance.first(),
 			last_name: chance.last(),
 			email: chance.email(),
-			password: chance.string()
+			password: 123123
 		};
 	},
-	'creditcard': () => {
+	'creditcards': () => {
 		return {
 			number: chance.cc(),
 			expiry_date: chance.exp(),
 			security_code: chance.natural({min: 100, max: 999})
 		};
 	},
-	'product': () => {
+	'products': () => {
 		return {
 			name: chance.cc(),
 			price: chance.floating({min: 10, max: 200, fixed: 2}),
@@ -47,6 +47,8 @@ chance.mixin({
 	}
 })
 
+// arrays consist of random objects
+// for db.Promise.map(array, fn)
 const addressArr = [], 
 	cartArr = [],
 	creditcardArr = [],
@@ -55,6 +57,9 @@ const addressArr = [],
 	productArr = [],
 	reviewArr = [],
 	userArr = [],
+
+	// table that associates
+	// 'db model': array of random objects
 	tables = {
 		'addresses': addressArr,
 		'carts': cartArr,
@@ -66,25 +71,30 @@ const addressArr = [],
 		'users': userArr,
 	}
 
+
 for (let i = 0; i < 30; i++) {
 	addressArr.push(chance.addresses());
 	// cartArr.push(chance.);
-	creditcardArr.push(chance.creditcard());
+	creditcardArr.push(chance.creditcards());
 	// lineItemArr.push(chance.);
 	// orderArr.push(chance.);
-	productArr.push(chance.product());
+	productArr.push(chance.products());
 	// reviewArr.push(chance.);
-	userArr.push(chance.user());
+	userArr.push(chance.users());
 }
 
-const seedFunc = function(table) {
-	return () => db.Promise.map(tables[table], result => db.model(table).create(result))
+
+// helper function for create data to tatabase
+const seedFunc = function(dbName) {
+	return () => db.Promise.map(tables[dbName], result => db.model(dbName).create(result))
 }
 
+// function for seeding data
 const seedUsers = seedFunc('users')
 const seedAddresses = seedFunc('addresses')
 const seedCreditcards = seedFunc('creditcards')
 const seedProducts = seedFunc('products')
+
 
 db.didSync
 	.then(() => db.sync({force: true}))

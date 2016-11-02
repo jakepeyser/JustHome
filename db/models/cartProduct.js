@@ -9,4 +9,12 @@ const Cart = db.define('carts', {
 	quantity: Sequelize.INTEGER
 })
 
+// Authed user
+// // create asso with user
+
+
+// not Authed user
+// // session storage
+// // local storage (put object and save it as cookie)
+
 module.exports = Cart;

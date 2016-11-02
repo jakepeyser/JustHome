@@ -8,10 +8,10 @@ const User = require('./user');
 const Product = require('./product');
 const Review = require('./review');
 const Order = require('./order');
-const LineItem = require('./lineitem');
+const LineItem = require('./lineItem');
 const Address = require('./address');
 const CreditCard = require('./creditcard');
-const Cart = require('./cart');
+const Cart = require('./cartProduct');
 
 
 // Associations decided on the first day
