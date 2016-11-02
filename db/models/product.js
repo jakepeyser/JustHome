@@ -5,20 +5,14 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const Product = db.define('products', {
-  name: Sequelize.STRING,  
-  price: Sequelize.FLOAT,
-  description: Sequelize.TEXT,
-  quantity: Sequelize.INTEGER,
-  type: {
-      type: Sequelize.ENUM,
-      values: ['chair', 'table']
-  },
-  style: {
-      type: Sequelize.ENUM,
-      values: ['brutalist', 'art deco', 'modern']
-  },
-  color: Sequelize.STRING,
-  material: Sequelize.STRING
+	name: { type: Sequelize.STRING, allowNull: false },
+	price: { type: Sequelize.FLOAT, allowNull: false },
+	description: Sequelize.TEXT,
+	quantity: { type: Sequelize.INTEGER, allowNull: false },
+	type: { type: Sequelize.ENUM, values: ['chair', 'table', 'bed', 'closet', 'sofa', 'desk'] },
+	style: { type: Sequelize.ENUM, values: ['Coastal', 'Contemporary', 'Traditional', 'modern', 'gothic'] },
+	color: Sequelize.STRING,
+	material: Sequelize.STRING
 })
 
 module.exports = Product;

@@ -10,7 +10,12 @@ const customCreditCardsRoutes = require('express').Router()
 module.exports = customCreditCardsRoutes
 
 // Epilogue will automatically create standard RESTful routes
-const creditcards = [{id:1}, {id:2}, {id:3}]
+const creditcards = epilogue.resource({
+  model: db.model('creditcards'),
+  endpoints: ['/credit-cards', '/credit-cards/:id']
+})
+
+customCreditCardsRoutes.get('/', (req,res) => res.send(creditcards.model))
 
 customCreditCardsRoutes.get('/:id', (req, res) => {
 	res.send(creditcards[req.params.id])

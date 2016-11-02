@@ -5,7 +5,8 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const Cart = db.define('carts', {
-    sessionid: Sequelize.STRING
+	sessionId: Sequelize.STRING,
+	quantity: Sequelize.INTEGER
 })
 
 module.exports = Cart;
