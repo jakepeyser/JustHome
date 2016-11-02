@@ -5,7 +5,7 @@
 // to get access to the User model.
 
 const Address = require('./address');
-const Cart = require('./cartProduct');
+const CartProduct = require('./cartProduct');
 const CreditCard = require('./creditCard');
 const LineItem = require('./lineItem');
 const Order = require('./order');
@@ -18,8 +18,8 @@ const User = require('./user');
 // UserAdresses
 User.belongsTo(Address, {as: 'shipping_address'});
 User.belongsTo(Address, {as: 'billing_address'});
-Address.hasOne(User, {as: 'shipping_address'});
-Address.hasOne(User, {as: 'billing_address'});
+// Address.hasOne(User, {as: 'shipping_address'});
+// Address.hasOne(User, {as: 'billing_address'});
 
 // UserCreditCards
 CreditCard.belongsTo(User);
@@ -39,8 +39,8 @@ Order.hasMany(LineItem);
 // OrderAdresses
 Order.belongsTo(Address, {as: 'shipping_address'});
 Order.belongsTo(Address, {as: 'billing_address'});
-Address.hasOne(Order, {as: 'shipping_address'});
-Address.hasOne(Order, {as: 'billing_address'});
+// Address.hasOne(Order, {as: 'shipping_address'});
+// Address.hasOne(Order, {as: 'billing_address'});
 
 // OrderCreditcards
 CreditCard.belongsTo(Order);
@@ -58,6 +58,9 @@ Product.hasMany(Review);
 Review.belongsTo(User);
 User.hasMany(Review);
 
+// CartProduct.hasOne(Product)
+Product.hasOne(CartProduct)
 
 
-module.exports = {User, Product, Review, Order, LineItem, Address, CreditCard, Cart};
+
+module.exports = {User, Product, Review, Order, LineItem, Address, CreditCard, CartProduct};

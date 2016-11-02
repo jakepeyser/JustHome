@@ -3,8 +3,6 @@
 const db = require('APP/db')
 const api = module.exports = require('express').Router()
 
-const users = require('./routes/users')
-
 api.get('/heartbeat', (req, res) => res.send({ok: true,}))
 api.use('/auth', require('./auth'))
 api.use('/users', require('./routes/users'))

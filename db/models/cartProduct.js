@@ -1,10 +1,9 @@
 'use strict'
 
-const bcrypt = require('bcrypt')
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
-const Cart = db.define('carts', {
+const cartProduct = db.define('cartProducts', {
 	sessionId: Sequelize.STRING,
 	quantity: Sequelize.INTEGER
 })
@@ -17,4 +16,4 @@ const Cart = db.define('carts', {
 // // session storage
 // // local storage (put object and save it as cookie)
 
-module.exports = Cart;
+module.exports = cartProduct;
