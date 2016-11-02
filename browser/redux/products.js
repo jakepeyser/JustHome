@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 // ---------------------> TAGS <---------------------
-const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
+export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 
 // ----------------> ACTION CREATORS <----------------
-const receiveProducts = products => ({
+export const receiveProducts = products => ({
   type: RECEIVE_PRODUCTS,
   products
 });
