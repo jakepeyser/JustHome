@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
-const CreditCard = db.define('creditcards', {
+const CreditCard = db.define('creditCards', {
 	number: { type: Sequelize.STRING, allowNull: false },
 	expiry_date: { type: Sequelize.STRING, allowNull: false },
 	security_code: { 

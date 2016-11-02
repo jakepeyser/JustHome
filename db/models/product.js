@@ -13,7 +13,7 @@ const Product = db.define('products', {
 	style: { type: Sequelize.ENUM, values: ['Coastal', 'Contemporary', 'Traditional', 'modern', 'gothic'] },
 	color: Sequelize.STRING,
 	material: Sequelize.STRING,
-	images: Sequelize.ARRAY(Sequelize.STRING)
+	images: Sequelize.ARRAY(Sequelize.TEXT)
 })
 
 module.exports = Product;

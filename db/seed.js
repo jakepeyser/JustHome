@@ -1,6 +1,7 @@
 const db = require('APP/db');
 const Chance = require('chance');
 const chance = new Chance(Math.random);
+const numberOfDB = 30;
 
 // arrays for ENUM
 const productType = ['chair', 'table', 'bed', 'closet', 'sofa', 'desk']
@@ -14,26 +15,32 @@ chance.mixin({
 			first_name: chance.first(),
 			last_name: chance.last(),
 			email: chance.email(),
-			password: 123123
+			password: '123123',
+			shipping_address_id: chance.natural({min:1, max:numberOfDB}),
+			billing_address_id: chance.natural({min:1, max:numberOfDB}),
 		};
 	},
-	'creditcards': () => {
+	'creditCards': () => {
 		return {
 			number: chance.cc(),
 			expiry_date: chance.exp(),
-			security_code: chance.natural({min: 100, max: 999})
+			security_code: chance.natural({min: 100, max: 999}),
+			user_id: chance.natural({min:1, max:numberOfDB}),
+			// order_id: chance.natural({min:1, max:numberOfDB})
 		};
 	},
 	'products': () => {
+		const thisType = chance.pickone(productType)
 		return {
-			name: chance.cc(),
+			name: chance.first() + ' ' + thisType,
 			price: chance.floating({min: 10, max: 200, fixed: 2}),
-			description: chance.paragraph({sentences: 5}),
+			description: chance.paragraph({sentences: 1}),
 			quantity: chance.natural({max:100}),
-			type: chance.pickone(productType),
+			type: thisType,
 			style: chance.pickone(productStyle),
-			color: chance.color(),
-			material: chance.pickone(productMaterial)
+			color: chance.color({format: 'hex'}),
+			material: chance.pickone(productMaterial),
+			images: ["https://dummyimage.com/320x150/ddd/fff.jpg&text=1", "https://dummyimage.com/320x150/ddd/fff.jpg&text=2", "https://dummyimage.com/320x150/ddd/fff.jpg&text=3"]
 		}
 	},
 	'addresses': () => {
@@ -63,7 +70,7 @@ const addressArr = [],
 	tables = {
 		'addresses': addressArr,
 		'carts': cartArr,
-		'creditcards': creditcardArr,
+		'creditCards': creditcardArr,
 		'lineItems': lineItemArr,
 		'orders': orderArr,
 		'products': productArr,
@@ -72,10 +79,10 @@ const addressArr = [],
 	}
 
 
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < numberOfDB; i++) {
 	addressArr.push(chance.addresses());
 	// cartArr.push(chance.);
-	creditcardArr.push(chance.creditcards());
+	creditcardArr.push(chance.creditCards());
 	// lineItemArr.push(chance.);
 	// orderArr.push(chance.);
 	productArr.push(chance.products());
@@ -92,16 +99,31 @@ const seedFunc = function(dbName) {
 // function for seeding data
 const seedUsers = seedFunc('users')
 const seedAddresses = seedFunc('addresses')
-const seedCreditcards = seedFunc('creditcards')
+const seedCreditcards = seedFunc('creditCards')
 const seedProducts = seedFunc('products')
+
+// const seedUsers = () => db.Promise.map([
+//   {
+// 		first_name: 'Donald',
+// 		last_name: 'Trump',
+// 		email: 'trump@secrets.org',
+// 		password: 'abcde'
+// 	},
+//   {
+// 		first_name: 'Hillary',
+// 		last_name: 'Clinton',
+// 		email: 'clinton@secrets.org',
+// 		password: '54321'
+// 	},
+// ], user => db.model('users').create(user))
 
 
 db.didSync
 	.then(() => db.sync({force: true}))
-	.then(seedUsers)
 	.then(seedAddresses)
-	.then(seedCreditcards)
 	.then(seedProducts)
+	.then(seedUsers)
+	.then(seedCreditcards)
 	.then(() => console.log(`Seeded OK`))
 	.catch(error => console.error(error))    
 	.finally(() => db.close())
