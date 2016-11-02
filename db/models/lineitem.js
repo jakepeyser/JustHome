@@ -15,7 +15,7 @@ const LineItem = db.define('lineitems', {
 			}
 		}
 	},
-	price: Sequelize.INTEGER
+	price: Sequelize.FLOAT
 })
 
 module.exports = LineItem;
