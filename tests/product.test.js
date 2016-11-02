@@ -11,6 +11,10 @@ import { RECEIVE_PRODUCTS,
          receiveProducts,
          fetchProducts } from 'App/browser/redux/products'
 
+import { RECEIVE_PRODUCT,
+         receiveProduct,
+         fetchProduct } from 'App/browser/redux/product'
+
 
 describe('Products', () => {
   describe('Redux', () => {
@@ -18,7 +22,7 @@ describe('Products', () => {
     let testProducts;
     beforeEach('Create testing store from reducer', () => {
       testProducts = [
-        { id: 3, name: 'Product #1' },
+        { id: 1, name: 'Product #1' },
         { id: 2, name: 'Product #2' },
         { id: 3, name: 'Product #3' }
       ];
@@ -30,6 +34,13 @@ describe('Products', () => {
         expect(action).to.be.deep.equal({
           type: RECEIVE_PRODUCTS,
           products: testProducts
+        });
+      });
+      it(`${RECEIVE_PRODUCT} returns expected action`, () => {
+        const action = receiveProduct(testProducts[0]);
+        expect(action).to.be.deep.equal({
+          type: RECEIVE_PRODUCT,
+          product: testProducts[0]
         });
       });
     });
@@ -51,19 +62,59 @@ describe('Products', () => {
         expect(newState.products).to.be.deep.equal(testProducts);
       });
 
-      it('retrieving products asynchronously', (done) => {
-        const fakeDispatch = (dispatchedItem) => {
-          testingStore.dispatch(dispatchedItem);
-          const newState = testingStore.getState();
-          expect(newState.products).to.be.deep.equal(testProducts);
-          done();
-        }
-
-        let mock = sinon.mock(axios).expects('get').once().withArgs('/api/products')
-          .returns(axiosResponse(testProducts));
-        fetchProducts()(fakeDispatch);
-        mock.verify();
+      it('has initial state of empty product objet', () => {
+        const currentStoreState = testingStore.getState();
+        expect(currentStoreState.currentProduct).to.be.deep.equal({});
       });
+
+      it(`reducing on ${RECEIVE_PRODUCT}`, () => {
+        testingStore.dispatch(receiveProduct(testProducts[0]));
+        const newState = testingStore.getState();
+        expect(newState.currentProduct).to.be.deep.equal(testProducts[0]);
+      });
+
+
+      describe('thunks', () => {
+
+        afterEach('Removing Function Mocks', () => {
+          axios.get.restore()
+        })
+
+        it('retrieving products asynchronously', (done) => {
+          const fakeDispatch = (dispatchedItem) => {
+            testingStore.dispatch(dispatchedItem);
+            const newState = testingStore.getState();
+            expect(newState.products).to.be.deep.equal(testProducts);
+            done();
+          }
+
+          let mock = sinon.mock(axios).expects('get').once().withArgs('/api/products')
+            .returns(axiosResponse(testProducts));
+          fetchProducts()(fakeDispatch);
+          mock.verify();
+        });
+
+
+        it('retrieving product asynchronously', (done) => {
+          const fakeDispatch = (dispatchedItem) => {
+            testingStore.dispatch(dispatchedItem);
+            const newState = testingStore.getState();
+            expect(newState.currentProduct).to.be.deep.equal(testProducts[0]);
+            done();
+          }
+
+          let mock = sinon.mock(axios).expects('get').once()
+            .returns(axiosResponse(testProducts[0]));
+          fetchProduct(testProducts[0].id)(fakeDispatch);
+          mock.verify();
+          //USED after once() in mock: .withArgs(`/api/products/${testProducts[0].id}`)
+        });
+
+      })
+
+
     });
   });
 });
+
+
