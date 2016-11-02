@@ -11,14 +11,12 @@ module.exports = customProductRoutes
 
 // Epilogue will automatically create standard RESTful routes
 const products = epilogue.resource({
-  model: db.model('products'),
-  endpoints: ['/products', '/products/:id']
+    model: db.model('products'),
+    endpoints: ['/products', '/products/:id']
 })
 
-customProductRoutes.get('/', (req, res) => {
-	res.send(products.model)
-})
-
-customProductRoutes.get('/:id', (req, res) => {
-	res.send(products[req.params.id])
+customProductRoutes.post('/products', (req, res, next) => {
+    products.model.create(req.body)
+    .then(created => res.status(201).send(created))
+    .catch(next);
 })
