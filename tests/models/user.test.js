@@ -40,8 +40,8 @@ describe('User', () => {
 				.catch(done);
 		})
 	});
- 	
- 	after('clear db', () => db.didSync)
+	
+	after('clear db', () => db.didSync)
 
 	describe('authenticate(plaintext: String) ~> Boolean', () => {
 
@@ -70,9 +70,9 @@ describe('User', () => {
 				.then(err=> {
 				expect(err).to.be.an('object');
 				expect(err.errors).to.contain.a.thing.with.properties({
-            path: 'first_name',
-            type: 'notNull Violation'
-        });
+			path: 'first_name',
+			type: 'notNull Violation'
+		});
 			})
 		})
 			

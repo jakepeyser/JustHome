@@ -10,9 +10,9 @@ api.use('/users', require('./routes/users'))
 api.use('/products', require('./routes/products'))
 api.use('/carts', require('./routes/carts'))
 api.use('/orders', require('./routes/orders'))
-api.use('/addresses', require('./routes/addresses'))
+// api.use('/addresses', require('./routes/addresses'))
 api.use('/credit-cards', require('./routes/credit-cards'))
-api.use('/reviews', require('./routes/reviews'))
+// api.use('/reviews', require('./routes/reviews'))
 
 // Send along any errors
 api.use((err, req, res, next) => {

@@ -62,5 +62,4 @@ User.hasMany(Review);
 Product.hasOne(CartProduct)
 
 
-
 module.exports = {User, Product, Review, Order, LineItem, Address, CreditCard, CartProduct};

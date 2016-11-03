@@ -10,7 +10,8 @@ const Product = db.define('products', {
 	quantity: { type: Sequelize.INTEGER, allowNull: false },
 	type: { type: Sequelize.ENUM, values: ['chair', 'table', 'bed', 'closet', 'sofa', 'desk'] },
 	style: { type: Sequelize.ENUM, values: ['coastal', 'contemporary', 'traditional', 'modern', 'gothic', 'brutalist'] },
-	color: Sequelize.STRING,
+	category: { type: Sequelize.ENUM, values: ['bedroom', 'livingroom', 'kitchen', 'office', 'bath', 'dining'] },
+    color: Sequelize.STRING,
 	material: Sequelize.STRING,
 	images: Sequelize.ARRAY(Sequelize.TEXT)
 })
