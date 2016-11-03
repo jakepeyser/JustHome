@@ -10,18 +10,31 @@ const customUserRoutes = require('express').Router();
 
 module.exports = customUserRoutes;
 
-// // Epilogue will automatically create standard RESTful routes
-// const users = epilogue.resource({
-//     model: db.model('users')
-// })
+// Epilogue will automatically create standard RESTful routes
+const users = epilogue.resource({
+    model: db.model('users'),
+    include: [
+    	{ model: addressModel, as: 'shipping_address', required: false },
+			{ model: addressModel, as: 'billing_address', required: false },
+			{ model: creditCardModel, required: false }
+    ],
+		endpoints: ['/users', '/users/:id']
+})
 
-// ----------------> '/users/' <-----------------------
 
-customUserRoutes.get('/', (req,res,next) => {
-	userModel.findAll()
-		.then(result => res.send(result))
-		.catch(next);
-});
+// // -------------------------------------------------
+// // ----------------> custom routes <----------------
+// // -------------------------------------------------
+
+
+
+// // ----------------> '/users/' <-----------------------
+
+// customUserRoutes.get('/', (req,res,next) => {
+// 	userModel.findAll()
+// 		.then(result => res.send(result))
+// 		.catch(next);
+// });
 
 
 // // how to set addresses & creditcard ?
@@ -31,20 +44,20 @@ customUserRoutes.get('/', (req,res,next) => {
 // 		.catch(next);
 // });
 
-// ----------------> '/users/:id' <---------------------
+// // ----------------> '/users/:id' <---------------------
 
-customUserRoutes.get('/:id', function(req, res, next){
-	userModel.findOne({
-		where: { id: req.params.id },
-		include: [
-			{ model: addressModel, as: 'shipping_address', required: false },
-			{ model: addressModel, as: 'billing_address', required: false },
-			{ model: creditCardModel, required: false }
-		]
-	})
-	.then(result => res.send(result))
-	.catch(next);
-});
+// customUserRoutes.get('/:id', function(req, res, next){
+// 	userModel.findOne({
+// 		where: { id: req.params.id },
+// 		include: [
+// 			{ model: addressModel, as: 'shipping_address', required: false },
+// 			{ model: addressModel, as: 'billing_address', required: false },
+// 			{ model: creditCardModel, required: false }
+// 		]
+// 	})
+// 	.then(result => res.send(result))
+// 	.catch(next);
+// });
 
 // // how to update addresses & creditcard ?
 // customUserRoutes.put('/:id', (req,res,next) => {
@@ -64,9 +77,9 @@ customUserRoutes.get('/:id', function(req, res, next){
 
 
 
-
-
-// ----------------> epilogue auth <-----------------
+// -------------------------------------------------
+// ----------------> epilogue auth <----------------
+// -------------------------------------------------
 
 // const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
 // users.delete.auth(mustBeLoggedIn)
