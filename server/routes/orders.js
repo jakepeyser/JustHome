@@ -32,8 +32,7 @@ const orders = epilogue.resource({
 			{ 
 				model: userModel, 
 				required: false 
-			},
-			
+			}			
 	],
 	endpoints: ['/orders', '/orders/:id']
 });

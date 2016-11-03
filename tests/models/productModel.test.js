@@ -4,6 +4,10 @@ import db from 'APP/db';
 import Product from 'APP/db/models/Product';
 
 import chai from 'chai';
+import chaiProperties from 'chai-properties';
+import chaiThings from 'chai-things';
+chai.use(chaiProperties);
+chai.use(chaiThings);
 const expect = chai.expect;
 
 import Bluebird from 'bluebird';

@@ -96,7 +96,7 @@ const addressArr = [],
 	// 'db model': array of random objects
 	tables = {
 		'addresses': addressArr,
-		'carts': cartProductArr,
+		'cartProducts': cartProductArr,
 		'creditCards': creditcardArr,
 		'lineItems': lineItemArr,
 		'orders': orderArr,

@@ -14,10 +14,7 @@ const Product = db.define('products', {
 	category: { type: Sequelize.ENUM, values: ['bedroom', 'livingroom', 'kitchen', 'office', 'bath', 'dining'] },
 	color: Sequelize.STRING,
 	material: Sequelize.STRING,
-	images: Sequelize.ARRAY(Sequelize.TEXT),
-	avgRating: {
-		type: Sequelize.VIRTUAL
-	}
+	images: Sequelize.ARRAY(Sequelize.TEXT)
 })
 
 
