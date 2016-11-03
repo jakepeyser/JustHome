@@ -1,6 +1,7 @@
-import React from'react';
+import React from 'react';
 import { Link } from 'react-router';
 import { AutoComplete, SelectField, MenuItem } from 'material-ui'
+import { roundPrice, getStars } from '../../utils'
 
 // Replace with categories
 const categories = [
@@ -20,7 +21,7 @@ export default ({ products, category, handleChange }) => {
             dataSource={ products }
             floatingLabelText="Search"
             fullWidth={ true }
-            onChange={(event, key, value) => handleChange("searchText", value) }
+            onUpdateInput={(text) => handleChange("searchText", text) }
           />
         </div>
         <div className="filter col-sm-3">
@@ -43,15 +44,18 @@ export default ({ products, category, handleChange }) => {
           return (
           <div key={ product.id } className="col-sm-4 col-lg-4 col-md-4">
             <div className="thumbnail">
-              <img src="http://placehold.it/320x150" alt="" />
+              <img src={product.images[0]} alt="" />
               <div className="caption">
-                <h4 className="pull-right">$24.99</h4>
+                <h4 className="pull-right">{`$${roundPrice(product.price)}`}</h4>
                 <h4>
-                  <Link to={`/products/${product.id}`}>First Product</Link>
+                  <Link to={`/products/${product.id}`}>{product.name}</Link>
                 </h4>
               </div>
-              <div className="ratings">
-                <p className="pull-right">Stars here</p>
+              <div className="pull-right ratings">
+              {
+                // TODO: Replace with real average rating
+                getStars(3)
+              }
               </div>
             </div>
           </div>

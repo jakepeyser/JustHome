@@ -19,18 +19,15 @@ function ProductsDecorator (AllProducts) {
 		handleChange(field, value) {
 			let newState = {};
 			newState[field] =  value;
-			this.setState(newState);			
+			this.setState(newState);	
 		}
 
 		render() {
-			
-			// const products = testProducts.filter((product) => {
-			// 	return product.name.toLowerCase()
-			// 		.indexOf(this.state.searchText) !== -1
-			// })
-			// TODO: Write a filter for searchText/category once routes/models done
-			const products = this.props.products
-
+			const products = this.props.products.filter((product) => {
+				return product.name.toLowerCase()
+					.indexOf(this.state.searchText.toLowerCase()) !== -1;
+			})
+			// TODO: Filter by category
 
 			return (
 				<AllProducts 

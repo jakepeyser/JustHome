@@ -12,5 +12,6 @@ const mapDispatchtoProps = ({dispatch}) => {
 		}
 	}
 }
+// TODO: Add local state so we can loop through product images
 
 export default connect(mapStateToProps, mapDispatchtoProps)(Product);
