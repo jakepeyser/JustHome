@@ -14,9 +14,6 @@ const categories = [
   { key: 'dining', display: 'Dining Room' }
 ]
 
-'bedroom', 'livingroom', 'kitchen', 'office', 'bath', 'dining'
-
-// TODO: Place actual values inside jsx component
 export default ({ products, category, handleChange }) => {
   return (
     <div id="products" className="col-xs-12">
