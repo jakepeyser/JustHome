@@ -19,6 +19,13 @@ const products = epilogue.resource({
 			required: false 
 		}
 	],
+	search: [{
+		param: 'category',
+		attributes: ['category']
+	}],
+	// search example
+	// URL : /products?category=bedroom
+	// findAll(where: {category: bedroom})
 	endpoints: ['/products', '/products/:id']
 });
 

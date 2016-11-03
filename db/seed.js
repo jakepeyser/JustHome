@@ -7,7 +7,7 @@ const productType = ['chair', 'table', 'bed', 'closet', 'sofa', 'desk'],
 	productStyle = ['coastal', 'contemporary', 'traditional', 'modern', 'gothic', 'brutalist'],
 	productMaterial = ['wood', 'plastic', 'mdf', 'mild steel', 'cast iron', 'synthetic leather', 'polyurethane', 'leather', 'fabric', 'acrylic', 'stainless steel'],
 	productCategory = ['bedroom', 'livingroom', 'kitchen', 'office', 'bath', 'dining'],
-	orderStatus = ['Created', 'Processing', 'Cancelled', 'Completed']
+	orderStatus = ['created', 'processing', 'cancelled', 'completed']
 
 // create methods generating random object
 chance.mixin({
@@ -20,6 +20,13 @@ chance.mixin({
 			zip: chance.zip()
 		};
 	},
+	// cartProducts: () => {
+	// 	return {
+	// 		sessionId: chance.string(),
+	// 		quantity: chance.natural({max:100}),
+	// 		product_id: chance.natural({min:0, max:5}),
+	// 	}
+	// },
 	creditCards: () => {
 		return {
 			number: chance.cc(),
@@ -77,7 +84,7 @@ chance.mixin({
 // arrays consist of random objects
 // for db.Promise.map(array, fn)
 const addressArr = [], 
-	cartArr = [],
+	cartProductArr = [],
 	creditcardArr = [],
 	lineItemArr = [],
 	orderArr = [],
@@ -89,7 +96,7 @@ const addressArr = [],
 	// 'db model': array of random objects
 	tables = {
 		'addresses': addressArr,
-		'carts': cartArr,
+		'carts': cartProductArr,
 		'creditCards': creditcardArr,
 		'lineItems': lineItemArr,
 		'orders': orderArr,
@@ -101,11 +108,9 @@ const addressArr = [],
 
 for (let i = 0; i < 30; i++) {
 	addressArr.push(chance.addresses());
-	// addressArr[i].shipping_address_id = i+1;
-	// addressArr[i].billing_address_id = i+1;
-	// cartArr.push(chance.);
+	// cartProductArr.push(chance.cartProducts());
 	creditcardArr.push(chance.creditCards());
-	// lineItemArr.push(chance.);
+	// lineItemArr.push(chance.lineItem());
 	orderArr.push(chance.orders());
 	productArr.push(chance.products());
 	reviewArr.push(chance.reviews());
@@ -125,6 +130,7 @@ const seedCreditcards = seedFunc('creditCards');
 const seedProducts = seedFunc('products');
 const seedReviews = seedFunc('reviews');
 const seedOrders = seedFunc('orders');
+const seedCartProducts = seedFunc('cartProducts');
 
 // const seedUsers = () => db.Promise.map([
 //   {
@@ -150,6 +156,7 @@ db.didSync
 	.then(seedCreditcards)
 	.then(seedReviews)
 	.then(seedOrders)
+	// .then(seedCartProducts)
 	.then(() => console.log(`Seeded OK`))
 	.catch(error => console.error(error))    
 	.finally(() => db.close())

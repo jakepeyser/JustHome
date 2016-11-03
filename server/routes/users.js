@@ -21,6 +21,9 @@ const users = epilogue.resource({
 		endpoints: ['/users', '/users/:id']
 })
 
+// users.list = (req,res,context) => console.log(context)
+
+
 
 // // -------------------------------------------------
 // // ----------------> custom routes <----------------
