@@ -7,7 +7,6 @@ const productModel = db.model('products');
 const userModel = db.model('users');
 
 const customProductRoutes = require('express').Router();
-
 module.exports = customProductRoutes;
 
 // Epilogue will automatically create standard RESTful routes

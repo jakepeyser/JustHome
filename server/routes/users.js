@@ -12,12 +12,12 @@ module.exports = customUserRoutes;
 
 // Epilogue will automatically create standard RESTful routes
 const users = epilogue.resource({
-    model: db.model('users'),
-    include: [
-    	{ model: addressModel, as: 'shipping_address', required: false },
+		model: db.model('users'),
+		include: [
+			{ model: addressModel, as: 'shipping_address', required: false },
 			{ model: addressModel, as: 'billing_address', required: false },
 			{ model: creditCardModel, required: false }
-    ],
+		],
 		endpoints: ['/users', '/users/:id']
 })
 

@@ -6,7 +6,8 @@ const chance = new Chance(Math.random);
 const productType = ['chair', 'table', 'bed', 'closet', 'sofa', 'desk'],
 	productStyle = ['coastal', 'contemporary', 'traditional', 'modern', 'gothic', 'brutalist'],
 	productMaterial = ['wood', 'plastic', 'mdf', 'mild steel', 'cast iron', 'synthetic leather', 'polyurethane', 'leather', 'fabric', 'acrylic', 'stainless steel'],
-	productCategory = ['bedroom', 'livingroom', 'kitchen', 'office', 'bath', 'dining'];
+	productCategory = ['bedroom', 'livingroom', 'kitchen', 'office', 'bath', 'dining'],
+	orderStatus = ['Created', 'Processing', 'Cancelled', 'Completed']
 
 // create methods generating random object
 chance.mixin({
@@ -25,8 +26,18 @@ chance.mixin({
 			expiry_date: chance.exp(),
 			security_code: chance.natural({min: 100, max: 999}),
 			user_id: chance.natural({min:1, max:5}),
-			// order_id: chance.natural({min:1, max:5})
 		};
+	},
+	orders: () => {
+		return {
+			confirmation_number: chance.string(),
+			status: chance.pickone(orderStatus),
+			order_date: chance.date(),
+			user_id: chance.natural({min:1, max:5}),
+			shipping_address_id: chance.natural({min:1, max:5}),
+			billing_address_id: chance.natural({min:1, max:5}),
+			credit_card_id: chance.natural({min:1, max:5}),
+		}
 	},
 	products: () => {
 		const thisType = chance.pickone(productType)
@@ -95,7 +106,7 @@ for (let i = 0; i < 30; i++) {
 	// cartArr.push(chance.);
 	creditcardArr.push(chance.creditCards());
 	// lineItemArr.push(chance.);
-	// orderArr.push(chance.);
+	orderArr.push(chance.orders());
 	productArr.push(chance.products());
 	reviewArr.push(chance.reviews());
 	userArr.push(chance.users());
@@ -113,6 +124,7 @@ const seedAddresses = seedFunc('addresses');
 const seedCreditcards = seedFunc('creditCards');
 const seedProducts = seedFunc('products');
 const seedReviews = seedFunc('reviews');
+const seedOrders = seedFunc('orders');
 
 // const seedUsers = () => db.Promise.map([
 //   {
@@ -137,6 +149,7 @@ db.didSync
 	.then(seedUsers)
 	.then(seedCreditcards)
 	.then(seedReviews)
+	.then(seedOrders)
 	.then(() => console.log(`Seeded OK`))
 	.catch(error => console.error(error))    
 	.finally(() => db.close())
