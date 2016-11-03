@@ -10,14 +10,13 @@ const productType = ['chair', 'table', 'bed', 'closet', 'sofa', 'desk'],
 
 // create methods generating random object
 chance.mixin({
-	users: () => {
+	addresses: () => {
 		return {
-			first_name: chance.first(),
-			last_name: chance.last(),
-			email: chance.email(),
-			password: '123123',
-			shipping_address_id: chance.natural({min:1, max:5}),
-			billing_address_id: chance.natural({min:1, max:5}),
+			street1: chance.address(),
+			street2: chance.areacode(),
+			city: chance.city(),
+			state: chance.state(),
+			zip: chance.zip()
 		};
 	},
 	creditCards: () => {
@@ -44,15 +43,6 @@ chance.mixin({
 			images: ["https://dummyimage.com/320x150/ddd/fff.jpg&text=1", "https://dummyimage.com/320x150/ddd/fff.jpg&text=2", "https://dummyimage.com/320x150/ddd/fff.jpg&text=3"]
 		};
 	},
-	addresses: () => {
-		return {
-			street1: chance.address(),
-			street2: chance.areacode(),
-			city: chance.city(),
-			state: chance.state(),
-			zip: chance.zip()
-		};
-	},
 	reviews: () => {
 		return {
 			rating: Math.floor(Math.random() * 5) + 1,
@@ -60,7 +50,17 @@ chance.mixin({
 			product_id: chance.natural({min:1, max:5}),
 			user_id: chance.natural({min:1, max:5})
 		};
-	}
+	},
+	users: () => {
+		return {
+			first_name: chance.first(),
+			last_name: chance.last(),
+			email: chance.email(),
+			password: '123123',
+			shipping_address_id: chance.natural({min:1, max:5}),
+			billing_address_id: chance.natural({min:1, max:5}),
+		};
+	},
 })
 
 // arrays consist of random objects

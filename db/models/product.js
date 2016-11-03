@@ -1,7 +1,8 @@
 'use strict'
 
-const Sequelize = require('sequelize')
-const db = require('APP/db')
+const Sequelize = require('sequelize');
+const db = require('APP/db');
+const reviewModel = db.model('reviews');
 
 const Product = db.define('products', {
 	name: { type: Sequelize.STRING, allowNull: false },
@@ -11,9 +12,13 @@ const Product = db.define('products', {
 	type: { type: Sequelize.ENUM, values: ['chair', 'table', 'bed', 'closet', 'sofa', 'desk'] },
 	style: { type: Sequelize.ENUM, values: ['coastal', 'contemporary', 'traditional', 'modern', 'gothic', 'brutalist'] },
 	category: { type: Sequelize.ENUM, values: ['bedroom', 'livingroom', 'kitchen', 'office', 'bath', 'dining'] },
-    color: Sequelize.STRING,
+	color: Sequelize.STRING,
 	material: Sequelize.STRING,
-	images: Sequelize.ARRAY(Sequelize.TEXT)
+	images: Sequelize.ARRAY(Sequelize.TEXT),
+	avgRating: {
+		type: Sequelize.VIRTUAL
+	}
 })
+
 
 module.exports = Product;
