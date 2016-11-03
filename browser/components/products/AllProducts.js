@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { AutoComplete, SelectField, MenuItem } from 'material-ui'
-import { roundPrice, getStars } from '../../utils'
+import { roundPrice, getAvgRating, getStars } from '../../utils'
 
 // Replace with categories
 const categories = [
-  'All',
-  'Bedroom',
-  'Office',
-  'Living Room'
+  { key: 'all', display: 'All' },
+  { key: 'bedroom', display: 'Bedroom' },
+  { key: 'livingroom', display: 'Living Room' },
+  { key: 'kitchen', display: 'Kitchen' },
+  { key: 'office', display: 'Office' },
+  { key: 'bath', display: 'Bath' },
+  { key: 'dining', display: 'Dining Room' }
 ]
+
+'bedroom', 'livingroom', 'kitchen', 'office', 'bath', 'dining'
 
 // TODO: Place actual values inside jsx component
 export default ({ products, category, handleChange }) => {
@@ -32,7 +37,7 @@ export default ({ products, category, handleChange }) => {
           >
           {
             categories.map((category, i) => {
-              return <MenuItem key={i} value={i} primaryText={category} />
+              return <MenuItem key={i} value={category.key} primaryText={category.display} />
             })
           }
           </SelectField>
@@ -41,6 +46,7 @@ export default ({ products, category, handleChange }) => {
       <div className="row">
       {
         products.map((product) => {
+          const avgRating = getAvgRating(product.reviews)
           return (
           <div key={ product.id } className="col-sm-4 col-lg-4 col-md-4">
             <div className="thumbnail">
@@ -53,8 +59,7 @@ export default ({ products, category, handleChange }) => {
               </div>
               <div className="pull-right ratings">
               {
-                // TODO: Replace with real average rating
-                getStars(3)
+                getStars(avgRating)
               }
               </div>
             </div>

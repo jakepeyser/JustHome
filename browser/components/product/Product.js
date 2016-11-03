@@ -1,7 +1,7 @@
 import React from 'react'
 import { RaisedButton } from 'material-ui'
 import Reviews from '../Reviews'
-import { roundPrice, getStars } from '../../utils'
+import { roundPrice, getAvgRating, getStars } from '../../utils'
 
 export default ({ product, buyClick }) => {
 
@@ -9,6 +9,8 @@ export default ({ product, buyClick }) => {
 		return null
 	}
 
+	const avgRating = product.reviews.length ? getAvgRating(product.reviews) : 0;
+	console.log(avgRating)
   return (
 
     <div id="product" className="col-xs-12">
@@ -23,10 +25,9 @@ export default ({ product, buyClick }) => {
 
     			<h2>{product.name}</h2>
     			<p>{`$${roundPrice(product.price)}`}</p>
-          {
-						// TODO: Replace with real average rating
-            getStars(3)
-          }
+    			{
+						avgRating ? getStars(avgRating) : null
+					}
     			{product.quantity ? <p> In-Stock </p> : <p> Out Of Stock </p> }
     			<RaisedButton onClick={buyClick} label='Buy'/>
 
@@ -41,7 +42,7 @@ export default ({ product, buyClick }) => {
     	</div>
 
     	<div className="row">
-    		<Reviews reviews={product.reviews} avgRating={4} />
+    		<Reviews reviews={product.reviews} avgRating={avgRating} />
     	</div>
 
 
