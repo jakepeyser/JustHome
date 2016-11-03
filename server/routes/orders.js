@@ -5,6 +5,7 @@ const db = require('APP/db');
 const productModel = db.model('products');
 const addressModel = db.model('addresses');
 const userModel = db.model('users');
+const creditCardModel = db.model('creditCards');
 
 const customOrdersRoutes = require('express').Router() 
 module.exports = customOrdersRoutes
