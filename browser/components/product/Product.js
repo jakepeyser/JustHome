@@ -30,7 +30,7 @@ export default ({ product, buyClick }) => {
 						avgRating ? getStars(avgRating) : null
 					}
     			{product.quantity ? <p> In-Stock </p> : <p> Out Of Stock </p> }
-    			<RaisedButton onClick={buyClick} label='Buy' backgroundColor={green500}/>
+    			<RaisedButton onClick={() => buyClick(product.id)} label='Buy' backgroundColor={green500}/>
 
     		</div>
 

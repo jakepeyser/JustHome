@@ -5,14 +5,16 @@ const productModel = db.model('products');
 const userModel = db.model('users');
 const cartProductModel = db.model('cartProducts');
 
-
 const customCartsRoutes = require('express').Router() 
 
 module.exports = customCartsRoutes
 
 customCartsRoutes.get('/', (req,res,next) => {
 	cartProductModel.findAll({
-		where: { sessionId: req.sessionID }
+		where: { sessionId: req.sessionID },
+		include: [ {
+			model: productModel, required: true
+		}]
 	})
 	.then(result => res.send(result))
 	.catch(next);
@@ -33,8 +35,18 @@ customCartsRoutes.post('/', (req,res,next) => {
 			return next(error)
 		}
 		return cartProduct.save()
-			.then(() => res.status(201).send(cartProduct))
-			.catch(next);
+			.then((newProduct) => {
+				productModel.findById(newProduct.product_id)
+					.then(product => {
+						newProduct.dataValues.product = product.dataValues;
+						console.log(newProduct);
+						res.status(201).send(newProduct);
+					})
+			})
+			.catch(err => {
+				console.log(err);
+				next();
+			});
 	})
 	.catch(next);
 })
