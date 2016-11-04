@@ -14,14 +14,8 @@ customCartsRoutes.get('/', (req,res,next) => {
 	cartProductModel.findAll({
 		where: { sessionId: req.sessionID }
 	})
-	.then(result => res.sendStatus(204))
+	.then(result => res.send(result))
 	.catch(next);
-})
-
-customCartsRoutes.delete('/', (req,res,next) => {
-	cartProductModel.clearCart(req.sessionID)
-	.then(() => res.sendStatus(204))
-	.catch(next)
 })
 
 customCartsRoutes.post('/', (req,res,next) => {
@@ -45,6 +39,11 @@ customCartsRoutes.post('/', (req,res,next) => {
 	.catch(next);
 })
 
+customCartsRoutes.delete('/', (req,res,next) => {
+	cartProductModel.clearCart(req.sessionID)
+	.then(() => res.sendStatus(204))
+	.catch(next)
+})
 
 customCartsRoutes.put('/:productId', (req,res,next) => {
 	cartProductModel.update(
