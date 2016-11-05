@@ -9,14 +9,17 @@ import App from './components/App'
 import AllProductsContainer from './components/products/AllProductsContainer'
 import ProductContainer from './components/product/ProductContainer'
 import OrderFormContainer from './components/orderform/OrderFormContainer'
+import OrderConfirmationContainer from './components/confirmation/OrderConfirmationContainer'
 
 // Redux actions and thunks
 import store from './store'
 import { fetchProducts } from './redux/products'
 import { fetchProduct } from './redux/product'
+import { fetchOrder } from './redux/order'
 
 const appEnter = () => store.dispatch(fetchProducts());
 const productEnter = (nextState) => store.dispatch(fetchProduct(nextState.params.productId));
+const confirmationEnter = (nextState) => store.dispatch(fetchOrder(nextState.params.orderId));
 
 render(
   <Provider store={ store }>
@@ -25,6 +28,7 @@ render(
         <Route path="/products" component={ AllProductsContainer } />
         <Route path="/products/:productId" component={ ProductContainer } onEnter={ productEnter } />
         <Route path="/checkout" component={ OrderFormContainer } />
+        <Route path="/confirmation/:orderId" component={ OrderConfirmationContainer } onEnter={ confirmationEnter } />
         <IndexRoute component={ AllProductsContainer } />
       </Route>
     </Router>
