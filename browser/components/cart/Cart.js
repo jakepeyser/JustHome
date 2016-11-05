@@ -19,12 +19,13 @@ export default ({cartProducts}) => {
             </TableRow>
             </TableHeader>
             <TableBody>
-                <TableRow>
                 {
                     cartProducts && cartProducts.map(item => {
                         return (
                         <TableRow key={item.id}>
-                            <TableRowColumn><img src={item.product.images[0]} alt="" /></TableRowColumn>
+                            <TableRowColumn>
+                                <img src={item.product.images[0]} alt="" />
+                            </TableRowColumn>
                             <TableRowColumn>{item.product.name}</TableRowColumn>
                             <TableRowColumn>{item.quantity}</TableRowColumn>
                             <TableRowColumn>{roundPrice(item.product.price)}</TableRowColumn>
@@ -34,14 +35,15 @@ export default ({cartProducts}) => {
                         </TableRow>
                         )
                     })
-                    
                 }
             </TableBody>
         </Table>
         <div id="purchasebutton">
-            <button>Buy!</button>
+            <a href="/checkout"><button>Buy</button></a>
         </div>
     </div>
 
   	)
   };
+
+// buy moves on to /checkout
