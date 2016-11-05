@@ -7,7 +7,7 @@ function OrderFormDecorator (OrderForm) {
 		constructor(props) {
 			super(props) 
 			this.state = {
-				first_name: '', last_name: '',
+				first_name: '', last_name: '', email: '',
         street1: '', street2: '', city: '', state: '', zip: '',
         number: '', card_type: '', expiry_date: '', security_code: ''
 			}

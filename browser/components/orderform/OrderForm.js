@@ -11,18 +11,26 @@ export default ({ handleChange, handleSubmit, card_type }) => {
     <div id="checkout" className="col-xs-12">
       <form onSubmit={ handleSubmit }>
         <div className="row">
-          <div className="col-xs-12 col-md-6">
+          <div className="col-xs-12 col-sm-6 col-md-4">
             <TextField
               floatingLabelText="First Name"
               fullWidth={true}
               onChange={(evt) => handleChange("first_name", evt.target.value) }
             />
           </div>
-          <div className="col-xs-12 col-md-6">
+          <div className="col-xs-12 col-sm-6 col-md-4">
             <TextField
               floatingLabelText="Last Name"
               fullWidth={true}
               onChange={(evt) => handleChange("last_name", evt.target.value) }
+            />
+          </div>
+          <div className="col-xs-12 col-md-4">
+            <TextField
+              floatingLabelText="Email"
+              type="email"
+              fullWidth={true}
+              onChange={(evt) => handleChange("email", evt.target.value) }
             />
           </div>
         </div>
