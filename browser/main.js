@@ -29,6 +29,7 @@ render(
         <Route path="/products" component={ AllProductsContainer } />
         <Route path="/products/:productId" component={ ProductContainer } onEnter={ productEnter } />
         <Route path="/cart" component={CartContainer} onEnter={ cartEnter } />
+        <Route path="/checkout" component={ OrderFormContainer } />
         <IndexRoute component={ AllProductsContainer } />
       </Route>
     </Router>
