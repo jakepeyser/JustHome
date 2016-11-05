@@ -40,7 +40,7 @@ export default ({ products, category, handleChange }) => {
           </SelectField>
         </div>
       </div>
-      <div className="row">
+      <div className="row product-results">
       {
         products.map((product) => {
           const avgRating = getAvgRating(product.reviews)
