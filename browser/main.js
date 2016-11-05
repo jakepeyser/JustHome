@@ -9,12 +9,12 @@ import App from './components/App'
 import AllProductsContainer from './components/products/AllProductsContainer'
 import ProductContainer from './components/product/ProductContainer'
 import CartContainer from './components/cart/CartContainer'
+import OrderFormContainer from './components/orderform/OrderFormContainer'
 
 // Redux actions and thunks
 import store from './store'
 import { fetchProducts } from './redux/products'
 import { fetchProduct } from './redux/product'
-import { fetchOrder } from './redux/order'
 import { fetchCart } from './redux/cart'
 
 const appEnter = () => store.dispatch(fetchProducts());

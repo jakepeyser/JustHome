@@ -11,7 +11,6 @@ export default ({ product, buyClick }) => {
 	}
 
 	const avgRating = product.reviews.length ? getAvgRating(product.reviews) : 0;
-	console.log(avgRating)
   return (
 
     <div id="product" className="col-xs-12">

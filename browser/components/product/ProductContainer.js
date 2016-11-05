@@ -9,7 +9,6 @@ const mapDispatchtoProps = (dispatch) => {
 	return {
 		buyClick : (productId) => {
 			dispatch(addToCart(productId));
-			console.log("BUY!")
 		}
 	}
 }
