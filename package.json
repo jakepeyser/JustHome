@@ -34,7 +34,7 @@
   "homepage": "https://github.com/jakepeyser/JustHome#readme",
   "dependencies": {
     "axios": "^0.15.2",
-    "bcrypt-nodejs": "0.0.3",
+    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "chalk": "^1.1.3",
