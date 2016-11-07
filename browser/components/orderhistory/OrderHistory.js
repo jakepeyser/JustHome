@@ -15,7 +15,7 @@ const OrderCard = (order) => {
     let orderDate = "Ordered on " + convertedDate;
     let totalLine = "Total: $temp. Status: " + order.status;
     let lineItems = order.lineItems;
-    console.log('order.lineitems', lineItems);
+    // console.log('order.lineitems', lineItems);
     return (
         <Card key={order.id} initiallyExpanded={false} onExpandChange={() => {}}>
             <CardHeader

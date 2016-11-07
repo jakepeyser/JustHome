@@ -38,7 +38,7 @@ customUserRoutes.get('/:id', function(req, res, next){
 			{ model: addressModel, as: 'shipping_address', required: false },
 			{ model: addressModel, as: 'billing_address', required: false },
 			{ model: creditCardModel, required: false },
-			{ model: orderModel, include: [{model: lineItem, include: [{model: productModel}]}], required: false }
+			{ model: orderModel, include: [{model: lineItem, include: [{model: productModel, required: false}], required: false}], required: false }
 		]
 	})
 	.then(result => res.send(result))
