@@ -12,7 +12,7 @@
     "test": "check-node-version --node '>= 6.7.0' && bin/setup && mocha --compilers js:babel-register tests/{*,**/*}.test.js",
     "test-watch": "check-node-version --node '>= 6.7.0' && bin/setup && mocha --compilers js:babel-register --watch tests/{*,**/*}.test.js",
     "build": "check-node-version --node '>= 6.7.0' && bin/setup && webpack",
-    "build-watch": "check-node-version --node '>= 6.7.0' && bin/setup && webpack -w",
+    "build-watch": "check-node-version --node '>= 6.7.0' && bin/setup && webpack -w --progress",
     "seed": "node db/seed.js"
   },
   "repository": {
@@ -55,6 +55,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
+    "sendgrid": "^4.7.1",
     "sequelize": "^3.24.6"
   },
   "devDependencies": {
@@ -68,6 +69,7 @@
     "chai-enzyme": "^0.5.2",
     "chai-properties": "^1.2.1",
     "chai-things": "^0.2.0",
+    "dotenv": "^2.0.0",
     "enzyme": "^2.5.1",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",

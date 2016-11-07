@@ -34,7 +34,7 @@ chance.mixin({
 			expiry_date: chance.exp(),
 			security_code: chance.natural({min: 100, max: 999}),
 			user_id: chance.natural({min:1, max:5}),
-			card_type: chance.pickone(cardType)
+			credit_card_type: chance.pickone(cardType)
 		};
 	},
 	lineItems: () => {
@@ -86,7 +86,7 @@ chance.mixin({
 			email: chance.email(),
 			password: '123123',
 			shipping_address_id: chance.natural({min:1, max:5}),
-			billing_address_id: chance.natural({min:1, max:5}),
+			billing_address_id: chance.natural({min:1, max:5})
 		};
 	},
 })
