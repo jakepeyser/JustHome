@@ -34,7 +34,6 @@ const generateConfirmationNum = () => chance.string({
 // 	endpoints: ['/orders', '/orders/:id']
 // });
 
-
 customOrdersRoutes.get('/:id', (req,res,next) => {
 	orderModel.findOne({
 		where: {id: req.params.id},

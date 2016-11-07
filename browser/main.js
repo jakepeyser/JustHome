@@ -11,6 +11,7 @@ import ProductContainer from './components/product/ProductContainer'
 import CartContainer from './components/cart/CartContainer'
 import OrderFormContainer from './components/orderform/OrderFormContainer'
 import OrderConfirmationContainer from './components/confirmation/OrderConfirmationContainer'
+import OrderHistoryContainer from './components/orderhistory/OrderHistoryContainer'
 
 // Redux actions and thunks
 import store from './store'
@@ -18,11 +19,13 @@ import { fetchProducts } from './redux/products'
 import { fetchProduct } from './redux/product'
 import { fetchOrder } from './redux/order'
 import { fetchCart } from './redux/cart'
+import { fetchOrders } from './redux/orderhistory'
 
 const appEnter = () => store.dispatch(fetchProducts());
 const productEnter = (nextState) => store.dispatch(fetchProduct(nextState.params.productId));
 const cartEnter = () => store.dispatch(fetchCart());
 const confirmationEnter = (nextState) => store.dispatch(fetchOrder(nextState.params.orderId));
+const orderHistoryEnter = (nextState) => store.dispatch(fetchOrders());
 
 render(
   <Provider store={ store }>
@@ -33,6 +36,7 @@ render(
         <Route path="/cart" component={CartContainer} onEnter={ cartEnter } />
         <Route path="/checkout" component={ OrderFormContainer } />
         <Route path="/confirmation/:orderId" component={ OrderConfirmationContainer } onEnter={ confirmationEnter } />
+        <Route path="/account/orderhistory" component={ OrderHistoryContainer } onEnter={ orderHistoryEnter } />
         <IndexRoute component={ AllProductsContainer } />
       </Route>
     </Router>
