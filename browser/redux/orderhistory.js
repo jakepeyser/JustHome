@@ -13,7 +13,10 @@ export const receiveOrders = orders => ({
 // --------------------> THUNKS <--------------------
 
 export const fetchOrders = (id) => dispatch => {
+    // switch to this when we fetch by userid
     // axios.get(`/api/users/${id}`)
+
+    // works for testing
     axios.get(`/api/users/1`)
         .then(res => {
             console.log(res.data.orders)
@@ -22,6 +25,19 @@ export const fetchOrders = (id) => dispatch => {
         .catch(err => {
             console.error('Unable to fetch order history', err);
         });
+
+    // axios.get(`/api/users/1`)
+    //     .then(res => {
+    //         let userOrders = [];
+    //         // console.log(res.data.orders)
+    //         res.data.orders.forEach(order => userOrders.push(order.id));
+    //         console.log('userorders', userOrders);
+
+    //         return dispatch(receiveOrders(res.data.orders))
+    //     })
+    //     .catch(err => {
+    //         console.error('Unable to fetch order history', err);
+    //     });
 };
 
 // --------------------> REDUCER <--------------------

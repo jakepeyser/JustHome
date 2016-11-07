@@ -6,6 +6,8 @@ const userModel = db.model('users');
 const addressModel = db.model('addresses');
 const creditCardModel = db.model('creditCards');
 const orderModel = db.model('orders');
+const lineItem = db.model('lineItems');
+const productModel = db.model('products');
 
 const customUserRoutes = require('express').Router();
 
@@ -36,7 +38,7 @@ customUserRoutes.get('/:id', function(req, res, next){
 			{ model: addressModel, as: 'shipping_address', required: false },
 			{ model: addressModel, as: 'billing_address', required: false },
 			{ model: creditCardModel, required: false },
-			{ model: orderModel, required: false }
+			{ model: orderModel, include: [{model: lineItem, include: [{model: productModel}]}], required: false }
 		]
 	})
 	.then(result => res.send(result))
