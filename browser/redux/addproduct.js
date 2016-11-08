@@ -12,13 +12,13 @@ export const createdProduct = newProduct => ({
 
 // --------------------> THUNKS <--------------------
 
-export const addProduct = ({ name, price, quantity, description, color, material, image1 }) => (dispatch, getState) => {
+export const addProduct = ({ name, price, quantity, description, color, material, image1, style, type, category }) => (dispatch, getState) => {
   // If cart is empty, do not create order and redirect to /cart
 //   if (!getState().cartProducts.length) {
 //     console.error('Cannot checkout with an empty cart')
 //     return browserHistory.push(`cart`);
 //   }
-  axios.post(`/api/products`, { name, price, quantity, description, color, material, image1 })
+  axios.post(`/api/products`, { name, price, quantity, description, color, material, image1, style, type, category })
     .then(res => {
       dispatch(createdProduct(res.data))
     //   browserHistory.push(`/confirmation/${res.data.id}`);

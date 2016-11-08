@@ -35,6 +35,12 @@ const validate = (state) => {
 		errs = addState(errs, errs, 'material', 'This field is required')
 	if (!state.image1)
 		errs = addState(errs, errs, 'image1', 'This field is required')
+	if (!state.type)
+		errs = addState(errs, errs, 'type', 'This field is required')
+	if (!state.style)
+		errs = addState(errs, errs, 'style', 'This field is required')
+	if (!state.category)
+		errs = addState(errs, errs, 'category', 'This field is required')
 	return errs;
 }
 
@@ -50,6 +56,9 @@ function AddProductDecorator (AddProduct) {
 				color: '',
 				material: '',
 				image1: '',
+				type: '',
+				style: '',
+				category: '',
 				errors: {}
 			}
 			this.handleChange = this.handleChange.bind(this);
@@ -76,6 +85,9 @@ function AddProductDecorator (AddProduct) {
 				<AddProduct
 				  	handleChange={this.handleChange}
           			handleSubmit={this.handleSubmit}
+					type={this.state.type}
+					style={this.state.style}
+					category={this.state.category}
 					errors={this.state.errors}
         />
 			)
