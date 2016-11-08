@@ -1,7 +1,7 @@
 import React from'react';
 import { connect } from 'react-redux';
 import AddProduct from './AddProduct';
-import { addOrder } from '../../redux/order'
+import { addProduct } from '../../redux/addproduct'
 import { checkCreditCard, checkState, checkZipCode, checkExpDate, checkCV } from '../../utils'
 
 // Update the designated field in the state
@@ -43,10 +43,13 @@ function AddProductDecorator (AddProduct) {
 		constructor(props) {
 			super(props) 
 			this.state = {
-				first_name: '', last_name: '', email: '',
-        shipping_address: { street1: '', street2: '', city: '', state: '', zip: '' },
-        billing_address: { street1: '', street2: '', city: '', state: '', zip: '' },
-        credit_card: { number: '', card_type: '', expiry_date: '', security_code: ''},
+				name: '',
+				price: '',
+				quantity: '',
+				description: '',
+				color: '',
+				material: '',
+				image1: '',
 				errors: {}
 			}
 			this.handleChange = this.handleChange.bind(this);
@@ -63,7 +66,7 @@ function AddProductDecorator (AddProduct) {
 			let errs = validate(this.state);
 			this.setState({ errors: errs })
 			if (!Object.keys(errs).length)
-      	this.props.submitOrder(this.state);
+      		this.props.submitProduct(this.state);
 			else
 				console.error(errs);
     }
@@ -71,9 +74,8 @@ function AddProductDecorator (AddProduct) {
 		render() {
 			return (
 				<AddProduct
-				  handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-					cardType={this.state.credit_card.card_type}
+				  	handleChange={this.handleChange}
+          			handleSubmit={this.handleSubmit}
 					errors={this.state.errors}
         />
 			)
@@ -82,9 +84,9 @@ function AddProductDecorator (AddProduct) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  submitOrder: (data) => {
-		data.credit_card.number = data.credit_card.number.split('-').join('');
-		dispatch(addOrder(data));
+  submitProduct: (data) => {
+	  	console.log(data)
+		dispatch(addProduct(data));
 	}
 });
 

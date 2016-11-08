@@ -4,7 +4,7 @@ import { TextField, SelectField, MenuItem, RaisedButton } from 'material-ui';
 import { white, green500 } from 'material-ui/styles/colors';
 
 
-export default ({ handleChange, handleSubmit, cardType, errors }) => {
+export default ({ handleChange, handleSubmit, errors }) => {
   return (
     <div id="checkout" className="col-xs-12">
       <form onSubmit={ handleSubmit }>
@@ -58,7 +58,7 @@ export default ({ handleChange, handleSubmit, cardType, errors }) => {
               <TextField
                 floatingLabelText="Image url 1"
                 fullWidth={true}
-                onChange={(evt) => handleChange("images", evt.target.value) }
+                onChange={(evt) => handleChange("image1", evt.target.value) }
               />
             </div>
             {/* enums: type, style, category. image url should push to images.array */}

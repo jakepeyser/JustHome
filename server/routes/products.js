@@ -48,11 +48,11 @@ const products = epilogue.resource({
 // 		.catch(next);
 // });
 
-// customProductRoutes.post('/', (req,res,next) => {
-// 	productModel.create(req.body)
-// 		.then(result => res.send(result))
-// 		.catch(next);
-// });
+customProductRoutes.post('/', (req,res,next) => {
+	productModel.create(req.body)
+		.then(result => res.send(result))
+		.catch(next);
+});
 
 // // ----------------> '/products/:id' <-------------
 
