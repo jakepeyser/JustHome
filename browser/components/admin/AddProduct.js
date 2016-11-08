@@ -17,7 +17,7 @@ export default ({ handleChange, handleSubmit, errors, type, style, category }) =
                 onChange={(evt) => handleChange("name", evt.target.value) }
               />
             </div>
-            <div className="col-xs-6 col-sm-6 col-md-2">
+            <div className="col-xs-12 col-sm-3">
               <TextField
                 floatingLabelText="Price"
                 hintText="$"
@@ -25,14 +25,28 @@ export default ({ handleChange, handleSubmit, errors, type, style, category }) =
                 onChange={(evt) => handleChange("price", evt.target.value) }
               />
             </div>
-            <div className="col-xs-6 col-sm-6 col-md-2">
+            <div className="col-xs-12 col-sm-3">
               <TextField
                 floatingLabelText="Quantity"
                 fullWidth={true}
                 onChange={(evt) => handleChange("quantity", evt.target.value) }
               />
             </div>
-            <div className="col-xs-4 col-md-12">
+            <div className="col-xs-12 col-sm-3">
+              <TextField
+                floatingLabelText="Color"
+                fullWidth={true}
+                onChange={(evt) => handleChange("color", evt.target.value) }
+              />
+            </div>
+            <div className="col-xs-12 col-sm-3">
+              <TextField
+                floatingLabelText="Material"
+                fullWidth={true}
+                onChange={(evt) => handleChange("material", evt.target.value) }
+              />
+            </div>
+            <div className="col-xs-12 col-sm-4">
               <DropDownMenu value={type} onChange={(evt, target, value) => handleChange("type", value)} style={{minWidth:150}}>
                   <MenuItem value="chair" primaryText="Chair" />
                   <MenuItem value="table" primaryText="Table" />
@@ -42,7 +56,7 @@ export default ({ handleChange, handleSubmit, errors, type, style, category }) =
                   <MenuItem value="desk" primaryText="Desk" />
               </DropDownMenu>
             </div>
-            <div className="col-xs-4 col-md-12">
+            <div className="col-xs-12 col-sm-4">
               <DropDownMenu value={style} onChange={(evt, target, value) => handleChange("style", value)} style={{minWidth:150}}>
                   <MenuItem value="coastal" primaryText="Coastal" />
                   <MenuItem value="contemporary" primaryText="Contemporary" />
@@ -52,7 +66,7 @@ export default ({ handleChange, handleSubmit, errors, type, style, category }) =
                   <MenuItem value="brutalist" primaryText="Brutalist" />
               </DropDownMenu>
             </div>
-            <div className="col-xs-4 col-md-12">
+            <div className="col-xs-12 col-sm-4">
               <DropDownMenu value={category} onChange={(evt, target, value) => handleChange("category", value)} style={{minWidth:150}}>
                   <MenuItem value="bedroom" primaryText="Bedroom" />
                   <MenuItem value="livingroom" primaryText="Living Room" />
@@ -67,20 +81,6 @@ export default ({ handleChange, handleSubmit, errors, type, style, category }) =
                 floatingLabelText="Description"
                 fullWidth={true}
                 onChange={(evt) => handleChange("description", evt.target.value) }
-              />
-            </div>
-            <div className="col-xs-12 col-sm-6 col-md-4">
-              <TextField
-                floatingLabelText="Color"
-                fullWidth={true}
-                onChange={(evt) => handleChange("color", evt.target.value) }
-              />
-            </div>
-            <div className="col-xs-12 col-sm-6 col-md-4">
-              <TextField
-                floatingLabelText="Material"
-                fullWidth={true}
-                onChange={(evt) => handleChange("material", evt.target.value) }
               />
             </div>
             <div className="col-xs-12">
