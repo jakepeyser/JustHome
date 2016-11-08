@@ -16,6 +16,7 @@ import AccountContainer from './components/account/AccountContainer';
 import PersonalInfo from './components/account/PersonalInfo';
 import SignInContainer from './components/signin/SignInContainer';
 import AdminContainer from './components/admin/AdminContainer';
+import AddProductContainer from './components/admin/AddProductContainer';
 
 // Redux actions and thunks
 import store from './store'
@@ -57,6 +58,7 @@ render(
         </Route>
         <Route path="/sign-in" component={SignInContainer} />
         <Route path="/admin" component={AdminContainer} onEnter={adminOrdersEnter} />
+        <Route path="/addproduct" component={AddProductContainer} />
         <IndexRoute component={ AllProductsContainer } />
       </Route>
     </Router>

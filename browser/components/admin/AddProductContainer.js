@@ -1,6 +1,6 @@
 import React from'react';
 import { connect } from 'react-redux';
-import OrderForm from './OrderForm';
+import AddProduct from './AddProduct';
 import { addOrder } from '../../redux/order'
 import { checkCreditCard, checkState, checkZipCode, checkExpDate, checkCV } from '../../utils'
 
@@ -21,37 +21,25 @@ const addState = (state, curState, field, value, obj) => {
 
 const validate = (state) => {
 	let errs = {};
-	if (!state.email)
-		errs = addState(errs, errs, 'email', 'This field is required')
-	if (!state.shipping_address.street1)
-		errs = addState(errs, errs, 'street1', 'This field is required', 'shipping_address')
-	if (!state.shipping_address.city)
-		errs = addState(errs, errs, 'city', 'This field is required', 'shipping_address')
-	if (!checkState(state.shipping_address.state))
-		errs = addState(errs, errs, 'state', 'Invalid state', 'shipping_address')
-	if (!checkZipCode(state.shipping_address.zip))
-		errs = addState(errs, errs, 'zip', 'Invalid zip code', 'shipping_address')
-	if (!state.billing_address.street1)
-		errs = addState(errs, errs, 'street1', 'This field is required', 'billing_address')
-	if (!state.billing_address.city)
-		errs = addState(errs, errs, 'city', 'This field is required', 'billing_address')
-	if (!checkState(state.billing_address.state))
-		errs = addState(errs, errs, 'state', 'Invalid state', 'billing_address')
-	if (!checkZipCode(state.billing_address.zip))
-		errs = addState(errs, errs, 'zip', 'Invalid zip code', 'billing_address')
-	if (!checkCreditCard(state.credit_card.number))
-		errs = addState(errs, errs, 'number', 'Invalid card number', 'credit_card')
-	if (!state.credit_card.card_type)
-		errs = addState(errs, errs, 'card_type', 'This field is required', 'credit_card')
-	if (!checkExpDate(state.credit_card.expiry_date))
-		errs = addState(errs, errs, 'expiry_date', 'Invalid expiration date', 'credit_card')
-	if (!checkCV(state.credit_card.security_code))
-		errs = addState(errs, errs, 'security_code', 'Invalid CV', 'credit_card')
+	if (!state.name)
+		errs = addState(errs, errs, 'name', 'This field is required')
+	if (!state.price)
+		errs = addState(errs, errs, 'price', 'This field is required')
+	if (!state.quantity)
+		errs = addState(errs, errs, 'quantity', 'This field is required')
+	if (!state.description)
+		errs = addState(errs, errs, 'description', 'This field is required')
+	if (!state.color)
+		errs = addState(errs, errs, 'color', 'This field is required')
+	if (!state.material)
+		errs = addState(errs, errs, 'material', 'This field is required')
+	if (!state.image1)
+		errs = addState(errs, errs, 'image1', 'This field is required')
 	return errs;
 }
 
-function OrderFormDecorator (OrderForm) {
-	return class StatefulOrderForm extends React.Component {
+function AddProductDecorator (AddProduct) {
+	return class StatefulAddProduct extends React.Component {
 		constructor(props) {
 			super(props) 
 			this.state = {
@@ -82,7 +70,7 @@ function OrderFormDecorator (OrderForm) {
 
 		render() {
 			return (
-				<OrderForm
+				<AddProduct
 				  handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
 					cardType={this.state.credit_card.card_type}
@@ -100,4 +88,4 @@ const mapDispatchToProps = dispatch => ({
 	}
 });
 
-export default connect(null, mapDispatchToProps)(OrderFormDecorator(OrderForm));
+export default connect(null, mapDispatchToProps)(AddProductDecorator(AddProduct));

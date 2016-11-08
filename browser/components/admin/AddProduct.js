@@ -11,32 +11,33 @@ export default ({ handleChange, handleSubmit, cardType, errors }) => {
         <fieldset className="form-box">
         <legend style={{width: '145px'}}>Personal Info</legend>
           <div className="row">
-            <div className="col-xs-12 col-sm-6 col-md-4">
+            <div className="col-xs-12">
               <TextField
                 floatingLabelText="Product Name"
                 fullWidth={true}
                 onChange={(evt) => handleChange("name", evt.target.value) }
               />
             </div>
-            <div className="col-xs-12 col-sm-6 col-md-4">
+            <div className="col-xs-12 col-sm-6 col-md-2">
               <TextField
                 floatingLabelText="Price"
+                hintText="$"
                 fullWidth={true}
                 onChange={(evt) => handleChange("price", evt.target.value) }
               />
             </div>
-            <div className="col-xs-12 col-sm-6 col-md-4">
-              <TextField
-                floatingLabelText="Description"
-                fullWidth={true}
-                onChange={(evt) => handleChange("description", evt.target.value) }
-              />
-            </div>
-            <div className="col-xs-12 col-sm-6 col-md-4">
+            <div className="col-xs-12 col-sm-6 col-md-2">
               <TextField
                 floatingLabelText="Quantity"
                 fullWidth={true}
                 onChange={(evt) => handleChange("quantity", evt.target.value) }
+              />
+            </div>
+            <div className="col-xs-12">
+              <TextField
+                floatingLabelText="Description"
+                fullWidth={true}
+                onChange={(evt) => handleChange("description", evt.target.value) }
               />
             </div>
             <div className="col-xs-12 col-sm-6 col-md-4">
@@ -53,9 +54,9 @@ export default ({ handleChange, handleSubmit, cardType, errors }) => {
                 onChange={(evt) => handleChange("material", evt.target.value) }
               />
             </div>
-            <div className="col-xs-12 col-sm-6 col-md-4">
+            <div className="col-xs-12">
               <TextField
-                floatingLabelText="Image url"
+                floatingLabelText="Image url 1"
                 fullWidth={true}
                 onChange={(evt) => handleChange("images", evt.target.value) }
               />
