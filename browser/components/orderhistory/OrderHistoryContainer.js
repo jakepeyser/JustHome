@@ -5,4 +5,8 @@ import { fetchOrders } from '../../redux/order';
 
 const mapStateToProps = ({ orders }) => ({ orders });
 
+import { fetchOrders } from '../../redux/order'
+
+const mapStateToProps = ({ orders }) => ({ orders });
+
 export default connect(mapStateToProps)(OrderHistory);

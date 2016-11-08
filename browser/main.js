@@ -1,7 +1,7 @@
 // Libraries
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
 
 // React components
@@ -17,6 +17,9 @@ import PersonalInfo from './components/account/PersonalInfo';
 import SignInContainer from './components/signin/SignInContainer';
 import AdminContainer from './components/admin/AdminContainer';
 import AddProductContainer from './components/admin/AddProductContainer';
+import AccountContainer from './components/account/AccountContainer'
+import AccountDetails from './components/account/AccountDetails'
+import SignInContainer from './components/signin/SignInContainer'
 
 // Redux actions and thunks
 import store from './store'
@@ -55,6 +58,10 @@ render(
           <Route path="current-order" />
           <Route path="order-history" />
           <Route path="edit-information" />
+        <Route path="/account" component={AccountContainer} >
+          <Route path="details" component={ AccountDetails }/>
+          <Route path="order-history" component={ OrderHistoryContainer } onEnter={ orderHistoryEnter }/>
+          <IndexRedirect to="details" />
         </Route>
         <Route path="/sign-in" component={SignInContainer} />
         <Route path="/admin" component={AdminContainer} onEnter={adminOrdersEnter} />

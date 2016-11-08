@@ -7,6 +7,7 @@ import orders from './orderhistory'
 import account from './account'
 import userId from './user'
 import adminorders from './admin'
+import user from './user'
 
 export default combineReducers({
   products,
@@ -17,4 +18,5 @@ export default combineReducers({
   account,
   userId,
   adminorders
+  user
 });
