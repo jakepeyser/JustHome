@@ -23,7 +23,9 @@ export default ({ userId, logout }) => (
       </div>
     </ToolbarGroup>
     <ToolbarGroup style={centerText}>
-      <ToolbarTitle style={toolbarText} text="JustHome" />
+      <Link to="/">
+        <ToolbarTitle style={toolbarText} text="JustHome" />
+      </Link>
     </ToolbarGroup>
     {
       userId ?

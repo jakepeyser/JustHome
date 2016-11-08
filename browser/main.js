@@ -14,7 +14,8 @@ import OrderConfirmationContainer from './components/confirmation/OrderConfirmat
 import OrderHistoryContainer from './components/orderhistory/OrderHistoryContainer'
 import AccountContainer from './components/account/AccountContainer';
 import PersonalInfo from './components/account/PersonalInfo';
-import SignInContainer from './components/signin/SignInContainer'
+import SignInContainer from './components/signin/SignInContainer';
+import AdminContainer from './components/admin/AdminContainer';
 
 // Redux actions and thunks
 import store from './store'
@@ -23,8 +24,9 @@ import { fetchProduct } from './redux/product'
 import { fetchOrder } from './redux/order'
 import { fetchCart } from './redux/cart'
 import { fetchOrders } from './redux/orderhistory'
-import { fetchAccount } from './redux/account';
+import { fetchAccount } from './redux/account'
 import { retrieveLoggedInUser } from './redux/user'
+import { fetchAllOrders } from './redux/admin'
 
 const appEnter = () => {
   store.dispatch(fetchProducts())
@@ -35,6 +37,7 @@ const cartEnter = () => store.dispatch(fetchCart());
 const confirmationEnter = (nextState) => store.dispatch(fetchOrder(nextState.params.orderId));
 const orderHistoryEnter = (nextState) => store.dispatch(fetchOrders());
 const accountEnter = (nextState) => store.dispatch(fetchAccount(1));
+const adminOrdersEnter = (nextState) => store.dispatch(fetchAllOrders());
 
 render(
   <Provider store={ store }>
@@ -53,6 +56,7 @@ render(
           <Route path="edit-information" />
         </Route>
         <Route path="/sign-in" component={SignInContainer} />
+        <Route path="/admin" component={AdminContainer} onEnter={adminOrdersEnter} />
         <IndexRoute component={ AllProductsContainer } />
       </Route>
     </Router>
