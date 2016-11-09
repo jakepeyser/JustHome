@@ -85,9 +85,23 @@ export default ({ handleChange, handleSubmit, errors, type, style, category }) =
             </div>
             <div className="col-xs-12">
               <TextField
-                floatingLabelText="Image url 1"
+                floatingLabelText="Image URL 1"
                 fullWidth={true}
                 onChange={(evt) => handleChange("image1", evt.target.value) }
+              />
+            </div>
+            <div className="col-xs-12">
+              <TextField
+                floatingLabelText="Image URL 2 (optional)"
+                fullWidth={true}
+                onChange={(evt) => handleChange("image2", evt.target.value) }
+              />
+            </div>
+            <div className="col-xs-12">
+              <TextField
+                floatingLabelText="Image URL 3 (optional)"
+                fullWidth={true}
+                onChange={(evt) => handleChange("image3", evt.target.value) }
               />
             </div>
             {/* enums: type, style, category. image url should push to images.array */}
