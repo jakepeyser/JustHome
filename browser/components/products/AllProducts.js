@@ -41,7 +41,7 @@ export default ({ products, category, handleChange }) => {
                   return (
                   <div key={ product.id } className="col-sm-4 col-lg-4 col-md-4">
                     <div className="thumbnail">
-                      <img src={product.images[0]} alt="" className="img-sm-4 img-lg-4 img-md-4" />
+                      <Link to={`/products/${product.id}`}><img src={product.images[0]} alt="" className="img-sm-4 img-lg-4 img-md-4" /></Link>
                       <div className="caption">
                         <h4 className="pull-right">{ formatPrice(product.price) }</h4>
                         <h4>
