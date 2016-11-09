@@ -9,8 +9,8 @@ export default ({ product, buyClick }) => {
 	if(!Object.keys(product).length) {
 		return null
 	}
-
 	const avgRating = product.reviews && product.reviews.length ? getAvgRating(product.reviews) : 0;
+
   return (
 	<div id="product" className="col-xs-12">
 		<div className="row">
