@@ -27,11 +27,13 @@ export default ({ user, productId, reviews, avgRating }) => {
             }
           </div>
         </div>*/}
-        {
-          // If the user is logged in and not an admin, show the Add Comment box
-          Object.keys(user).length && !user.isAdmin ?
-            <AddReviewContainer productId={productId} /> : null
-        }
+        <div>
+          {
+            // If the user is logged in and not an admin, show the Add Comment box
+            Object.keys(user).length && !user.isAdmin ?
+              <AddReviewContainer productId={productId} /> : null
+          }
+        </div>
         {
           reviews && reviews.map((review) => {
             return (
